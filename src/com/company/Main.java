@@ -12,7 +12,7 @@ public class Main {
         //Task1_4();
         //Task1_5();
         //Task1_6();
-
+        //Task1_7();
     }
     private static int recursion(double n) {
         if (n == 1) {
@@ -444,5 +444,136 @@ public class Main {
             else if(d == e) System.out.println("right");
 
         }
+    }
+    private static void Task1_7(){
+
+        int n = 1;
+        int x = 0;
+
+        while (n >= 0){
+            n = sc.nextInt();
+            x++;
+        }
+        System.out.println(x);
+
+        n = 1;
+        int sum = 0;
+        while (n%5 != 0){
+            n = sc.nextInt();
+            if(n>10){
+                sum += n;
+            }
+        }
+        System.out.println(sum);
+
+        n = 10;
+        sum = 0;
+        while (n>=10 && n<100){
+            n = sc.nextInt();
+            if(n<10 || n>=100) break;
+            sum += n/10;
+            sum += n%10;
+        }
+        System.out.println(sum);
+
+        int a,b, quo, rem;
+        a = sc.nextInt();
+        b = sc.nextInt();
+        quo = 0;
+        rem = 0;
+        while(a>0){
+            a = a-b;
+            if(a>=0){
+                if(a<b && a!=0){
+                    rem = a;
+                    quo++;
+                    break;
+                }
+                else{
+                    quo++;
+                }
+
+            }
+            else{
+                rem = a+b;
+                break;
+            }
+        }
+        System.out.println(quo+" "+rem);
+
+        int f;
+        n = sc.nextInt();
+        f = 0;
+        while(n>0){
+            n /= 2;
+            f++;
+        }
+        System.out.println(f);
+
+        n = sc.nextInt();
+        sum = 0;
+        while(n>25 && n<100){
+            if(n%2==0){
+                sum += n;
+                n -= 2;
+            }
+            else{
+                n -=1;
+            }
+        }
+        System.out.println(sum);
+
+        int count;
+        n = sc.nextInt();
+        count = 0;
+        while(n>0){
+            n /= 10;
+            count++;
+        }
+        System.out.println(count);
+
+        n = sc.nextInt();
+        while(n>0){
+            if((n%10)%2==0){
+                n /= 10;
+                if(n==0){
+                    System.out.println("NO");
+                    break;
+                }
+            }
+            else{
+                System.out.println(n%10);
+                break;
+            }
+        }
+
+        int min;
+        n = sc.nextInt();
+        min = n;
+        while(n>0){
+            if(n%10<min && n%10!=0){
+                min = n%10;
+            }
+            n/=10;
+        }
+        System.out.println(min);
+
+        int simple;
+        n = sc.nextInt();
+        n++;//8
+        simple = 0;
+        while(n<1010 && simple==0){
+            for (int i = 2; i <= n; i++) {
+                if(n==i){
+                    simple = n;
+                    break;
+                }
+                if (n%i==0) {
+                    n++;
+                    break;
+                }
+            }
+        }
+        System.out.println(simple);
     }
 }
