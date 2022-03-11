@@ -575,5 +575,102 @@ public class Main {
             }
         }
         System.out.println(simple);
+
+        n = sc.nextInt();
+        int k = n;
+        while(n>0 && sc.nextInt() > 437){
+            n--;
+        }
+        if(n == 0) System.out.println("No crash");
+        else System.out.println("Crash " + (k-n+1));
+
+        a = sc.nextInt();
+        b = sc.nextInt();
+        int aa = a;
+        int bb = Math.abs(b);
+        while(--bb > 0){
+            a+=aa;
+        }
+        if(b < 0) a=-a;
+        if(b == 0) a = 0;
+        System.out.println(a);
+
+        x = sc.nextInt();
+        int y = 2;
+        while(x-- > 0){
+            System.out.print(y + " ");
+            y+=2;
+        }
+
+        a = sc.nextInt();
+        b = sc.nextInt();
+        int c = sc.nextInt(), d = sc.nextInt();
+        int minch = ((a >= c) ? c : a), minzn = ((a >= c) ? d : b);
+        int maxch = ((a >= c) ? a : c), maxzn = ((a >= c) ? b : d);
+        int ost = 10000 % minch;
+        x = 10000 + ((ost == 0) ? minzn : (minch - ost + minzn));
+        k = 0;
+        while(x < 100000){
+            if(x % maxch == maxzn) {
+                System.out.print(x + " ");
+                k++;
+            }
+            x+=minch;
+        }
+        if(k == 0) System.out.println(-1);
+
+        sum = 0;
+        x = sc.nextInt();
+        while(x > 0){
+            sum += x % 10;
+            x/=10;
+        }
+        System.out.println(sum);
+
+        x = sc.nextInt();
+        while(x > 9){
+            if(x % 10 == (x/10)%10) {
+                System.out.println("YES");
+                return;
+            }
+            x/=10;
+        }
+        System.out.println("NO");
+
+        x = sc.nextInt();
+        if (x<=1) {
+            System.out.println("composite");
+            return;
+        }
+        else if (x <=3) {
+            System.out.println("prime");
+            return;
+        }
+        else if (x%2==0 || x %3 ==0) {
+            System.out.println("composite");
+            return;
+        }
+
+        n = 5;
+        while (n*n <=x){
+            if (x % n ==0 || x % (n+2) == 0) {
+                System.out.println("composite");
+                return;
+            }
+            n=n+6;
+        }
+        System.out.println("prime");
+
+        double ad = sc.nextDouble();
+        double aad = 1;
+        n = sc.nextInt();
+        while(n > 0){
+            if(n % 2 == 1){
+                aad *= ad;
+            }
+            ad *= ad;
+            n >>= 1;
+        }
+        System.out.println(aad);
     }
 }
