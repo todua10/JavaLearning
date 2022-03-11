@@ -13,6 +13,8 @@ public class Main {
         //Task1_6();
         //Task1_7();
         //Task1_8();
+        //SumOfDigits(825);
+        //SumOfSeven(10, 30);
     }
     private static int recursion(double n) {
         if (n == 1) {
@@ -915,4 +917,213 @@ public class Main {
         }
         System.out.println(sum);
     }
+    public static int SumOfDigits(int n){
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        int sum = 0;
+        for (int i = n; i != 0; i = i / 10){
+            sum = sum + i % 10;
+        }
+        return (sum);
+    }
+    public static int SumOfSeven(int a, int b){
+        if(b < a || b < 10) return 0;
+        int sum = 0;
+        int st = (a % 7 == 0) ? (a == 0) ? 7 : a : (a + 7 - (a % 7));
+        if(a % 7 == 0) st = a;
+        int start = (st / 10 == 0) ? st + 7 : st;
+        while(start <= b && start < 100){
+            sum += SumOfDigits2(start);
+            start += 7;
+        }
+        return sum;
+    }
+    public static int SumOfDigits2(int x){
+        int sum = 0;
+        while(x > 0){
+            sum += x % 10;
+            x/=10;
+        }
+        return sum;
+    }
+    public static int SumOfThirteen(int x){
+        int num = 0;
+        while(x > 0){
+            if(SumOfDigits(--x) % 13 == 0) num++;
+        }
+        return num;
+    }
+    public static int SumOfDigits3(int x){
+        int sum = 0;
+        while(x > 0){
+            sum += x % 10;
+            x/=10;
+        }
+        return sum;
+    }
+    public static void BinFraction(double x, int n){
+        StringBuffer str = new StringBuffer();
+        for(int i = 0; i < n; i++){
+            x *= 2;
+            str.append((int)(x/1));
+            x %= 1;
+        }
+        System.out.println(str);
+    }
+    public static double avgOf4Digit(int[] arr){
+        double sum = 0; int k = 0;
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i] >= 1000 && arr[i] < 10000) {
+                sum += arr[i];
+                k++;
+            }
+        }
+        if(k == 0) return (double)(-1);
+        return sum / k;
+    }
+    public static int[] minToBegin(int[] arr){
+        int min_ind = 0, min = arr[0];
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i] < min) {
+                min = arr[i];
+                min_ind = i;
+            }
+        }
+        for(int i = min_ind; i > 0; i--) arr[i] = arr[i - 1];
+        arr[0] = min;
+        return arr;
+    }
+    public static double segmentLength(int x1, int y1, int x2, int y2){
+        return (double)(Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2)));
+    }
+    public static double trianglePerimetr(int x1, int y1, int x2, int y2, int x3, int y3){
+        return segmentLength(x1, y1, x2, y2) + segmentLength(x2, y2, x3, y3) + segmentLength(x3, y3, x1, y1);
+    }
+    public static int min(int x1, int x2, int x3, int x4){
+        return (x1 <= x2 && x1 <= x3 && x1 <= x4) ? x1 : (x2 <= x1 && x2 <= x3 && x2 <= x4) ? x2 : (x3 <= x1 && x3 <= x2 && x3 <= x4) ? x3 : x4;
+    }
+    private static void Task1_11(){
+        int n = sc.nextInt(); int m = sc.nextInt();
+        int[][] mat = new int[n][m];
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < m; j++)
+                mat[i][j] = sc.nextInt();
+        System.out.println(m + " " + n);
+        for(int j = 0; j < m; j++){
+            for(int i = n - 1; i >= 0; i--)
+                System.out.print(mat[i][j] + " ");
+            System.out.println();
+        }
+
+        n = sc.nextInt();
+        int[][] mas = new int[n][n];
+        for(int i = 0; i < mas.length; i++) {
+            for(int j = 0; j < mas[i].length; j++) {
+                if(i + j + 1== n) {
+                    mas[i][j] = 1;
+                }
+                else {
+                    if (i + j + 1 < n) {
+                        mas[i][j] = 0;
+                    }
+                    else {
+                        mas[i][j] = 2;
+                    }
+                }
+            }
+        }
+        for(int i = 0; i < mas.length; i++) {
+            for(int j = 0; j < mas[i].length; j++) {
+                System.out.print(mas[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        //4 задание
+        n = sc.nextInt();
+        m = sc.nextInt();
+        int[][] arr = new int[n][m];
+        int i = 0, j = 0;
+        for ( int k = 0; k < n * m; ++k, ++j ) {
+            if ( k != 0 && k % m == 0 ) {
+                ++i;
+                j = 0;
+                System.out.println();
+            }
+            arr[i][j] = i * j;
+            System.out.format("%4d",arr[i][j]);
+        }
+
+        n = sc.nextInt();
+        m = sc.nextInt();
+        mat = new int[n][m];
+        int val = 0;
+        for(i = 0; i < n; i++){
+            if(i % 2 == 0)
+                for (j = 0; j < m; j++)
+                    mat[i][j] = val++;
+            else
+                for (j = m - 1; j >= 0; j--)
+                    mat[i][j] = val++;
+        }
+        for(i = 0; i < n ; i++){
+            for(j = 0; j < m; j++)
+                System.out.print(String.format("%3d", mat[i][j]));
+            System.out.println();
+        }
+
+        n = 2 * sc.nextInt() + 1;
+        mat = new int[n][n];
+        perimeter(mat);
+        val = (n-2)*(n-2)-1;
+        i = 0;
+        j = n - 2;
+        while(val > 0){
+            while(mat[i + 1][j] == 0)
+                mat[++i][j] = val--;
+            while(mat[i][j - 1] == 0)
+                mat[i][--j] = val--;
+            while(mat[i - 1][j] == 0)
+                mat[--i][j] = val--;
+            while(mat[i][j + 1] == 0)
+                mat[i][++j] = val--;
+        }
+        for(int x = 0; x < mat.length ; x++){
+            for(int y = 0; y < mat.length; y++)
+                System.out.print(String.format("%3d", mat[x][y]));
+            System.out.println();
+        }
+
+        //3 задание
+        n = sc.nextInt();
+        int a[][] = new int[n][n];
+        for(i = 0; i < n; ++i) {
+            for(j = 0; j < n; ++j) {
+                a[i][j] = sc.nextInt();
+            }
+        }
+        for(i = 0; i < n; ++i){
+            for(j = 0; j < n; ++j){
+                if(a[i][j] != a[j][i]){
+                    System.out.println("no");
+                    return;
+                }
+            }
+        }
+        System.out.println("yes");
+        return;
+    }
+    public static void perimeter(int[][] mat){
+        int n = mat.length;
+        int val = n*n-1;
+        for(int i = 0; i < n; i++)
+            mat[i][n-1] = val--;
+        for(int j = n - 2; j >= 0; j--)
+            mat[n-1][j] = val--;
+        for(int i = n - 2; i >= 0; i--)
+            mat[i][0] = val--;
+        for(int j = 1; j < n - 1; j++)
+            mat[0][j] = val--;
+    }
+
 }
