@@ -1,7 +1,6 @@
 package com.company;
 
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static Scanner sc = new Scanner(System.in);
@@ -13,6 +12,7 @@ public class Main {
         //Task1_5();
         //Task1_6();
         //Task1_7();
+        //Task1_8();
     }
     private static int recursion(double n) {
         if (n == 1) {
@@ -672,5 +672,247 @@ public class Main {
             n >>= 1;
         }
         System.out.println(aad);
+    }
+    private static void Task1_8(){
+
+        boolean eq = false;
+        int x = sc.nextInt();
+        int[] mas = new int[x];
+        for (int i = 0; i < x; i++){
+            mas[i] = sc.nextInt();
+        }
+        int b = sc.nextInt();
+        for (int i = 0; i < x; i++) {
+            if (mas[i] == b) {
+                eq = true;
+                System.out.println(i + 1);
+                break;
+            }
+        }
+        if (!eq) {
+            System.out.println("NO");
+        }
+
+        int k = sc.nextInt();
+        int summ=0;
+        x = 0;
+        while (k>0){
+            int n = sc.nextInt();
+            if (n%2==0){
+                summ=summ+n;
+                x++;
+            }
+            k--;
+        }
+        if (x>0){
+            System.out.println(summ);
+        }
+        else {
+            System.out.println("NO");
+        }
+
+        k = sc.nextInt();
+        float sum=0;
+        float xf = 0;
+        while (k>0){
+            int n = sc.nextInt();
+            if (n%2!=0){
+                sum=sum+n;
+                xf++;
+            }
+            k--;
+        }
+        if (xf>0){
+            sum=sum/xf;
+            System.out.printf("%.2f",sum);
+        }
+        else {
+            System.out.println("NO");
+        }
+
+        int n = sc.nextInt();
+        int[] result = new int[n];
+        int val = 4;
+        for (int i = 0; i < n; i++, val += 3) {
+            result[i] = val;
+            System.out.print(result[i] + " ");
+        }
+
+        k = sc.nextInt();
+        int[] arr = new int [k];
+        for (int i=0;i<k; i++){
+            x = sc.nextInt();
+            arr[i]=x;
+        }
+        for(int i = 0; i < k/2; i++){
+            int v = arr[i];
+            int j = k - 1 - i;
+            arr[i] = arr[j];
+            arr[j] = v;
+        }
+        for (int i = 0; i<k; i++){
+            System.out.print(arr[i]+" ");
+        }
+
+        int j = sc.nextInt(), count = 0, maxcount = 1, min=0;
+        n = -1;
+        int[] a = new int[j];
+        if (j != 1) {
+            for (int i = 0; i < j; i++) {
+                a[i] = sc.nextInt();
+            }
+            min = a[0];
+            for (int i = 0; i < j; i++) {
+                count=0;
+                for (k = i; k < j; k++) {
+                    if (a[i] == a[k]) {
+                        count += 1;
+                    }
+                }
+                if (maxcount < count) {
+                    maxcount = count;
+                    n = a[i];
+                }
+                if (min>a[i]){
+                    min = a[i];
+                }
+            }
+            if (maxcount==1){
+                System.out.println(min);
+            }
+            else {
+                System.out.println(n);
+            }
+        }
+        else {
+            a[0] = sc.nextInt();
+            System.out.println(a[0]);
+        }
+
+        n = sc.nextInt();
+        a = new int [n];
+        for (j=0; j < n; j++){
+            a[j] = sc.nextInt();
+        }
+        for (int i = 0; i <n; i++) {
+            if (a[i] < 0){
+                System.out.print(a[i] + " ");
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            if (a[i] > 0){
+                System.out.print(a[i] + " ");
+            }
+        }
+
+        int N = sc.nextInt();
+        StringBuilder sb=new StringBuilder(Integer.toBinaryString(N));
+        System.out.println(sb.reverse());
+
+        N = sc.nextInt();
+        arr = new int[N+1];
+        arr[0] = 1;
+        for(int i = 1; i < N; i++){
+            arr[sc.nextInt()] = 1;
+        }
+        for(int i = 1; i < N+1; i++){
+            if(arr[i] == 0) System.out.println(i);
+        }
+
+        N = sc.nextInt();
+        int num = 1;
+        for(int i = 0; i < N; i++){
+            for(j = 0; j < N; j++){
+                if(i == j) {
+                    System.out.print(num + " ");
+                    num+=N+1;
+                }
+            }
+        }
+
+        N = sc.nextInt();
+        num = 1;
+        for(int i = 1; i < N+1; i++){
+            num*=i;
+        }
+        System.out.println(num);
+
+        n = sc.nextInt();
+        int aa = sc.nextInt();
+        b = sc.nextInt();
+        int bb = b-1;
+        int c = sc.nextInt();
+        int d = sc.nextInt(), dd = d-1;
+        arr = new int[n];
+        for(int i = 0; i < n; i++) {
+            arr[i]=i+1;
+        }
+        for(int i = aa-1; i < (b+aa)/2; i++){
+            int temp = arr[i];
+            arr[i] = arr[bb];
+            arr[bb--] = temp;
+        }
+        for(int i = c-1; i < (d+c)/2; i++){
+            int temp = arr[i];
+            arr[i] = arr[dd];
+            arr[dd--] = temp;
+        }
+        for(int i = 0; i < n; i++) {
+            System.out.print(arr[i] + " ");
+        }
+
+        n = sc.nextInt();
+        for(int i = 0; i < n; i++){
+            x = sc.nextInt();
+            if(i%2==0) System.out.print(x + " ");
+        }
+
+        n = sc.nextInt();
+        for(int i = 0; i < n; i++){
+            x = sc.nextInt();
+            if(x%2==0) System.out.print(x + " ");
+        }
+
+        sum = 0;
+        n = sc.nextInt();
+        for(int i = 0; i < n; i++){
+            if(sc.nextInt()>0) sum++;
+        }
+        System.out.println(sum);
+
+        sum = 0;
+        n = sc.nextInt();
+        arr = new int[n];
+        if(n == 0) {
+            System.out.println(0);
+            return;
+        }
+        arr[0] = sc.nextInt();
+        for(int i = 1; i < n; i++){
+            arr[i] = sc.nextInt();
+            if(arr[i] > arr[i-1]) sum++;
+        }
+        System.out.println(sum);
+
+        int max = 0;
+        n = sc.nextInt();
+        arr = new int[n];
+        arr[0] = sc.nextInt();
+        max = arr[0];
+        for(int i = 1; i < n; i++){
+            arr[i] = sc.nextInt();
+            if(arr[i] > max) max = arr[i];
+        }
+        System.out.println(max);
+
+        n = sc.nextInt();
+        sum = 1;
+        arr = new int[n];
+        arr[0] = sc.nextInt();
+        for(int i = 1; i < n; i++){
+            arr[i] = sc.nextInt();
+            if(arr[i] > arr[i-1]) sum++;
+        }
+        System.out.println(sum);
     }
 }
