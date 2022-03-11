@@ -13,8 +13,7 @@ public class Main {
         //Task1_6();
         //Task1_7();
         //Task1_8();
-        //SumOfDigits(825);
-        //SumOfSeven(10, 30);
+        //Task1_11();
     }
     private static int recursion(double n) {
         if (n == 1) {
@@ -1124,6 +1123,140 @@ public class Main {
             mat[i][0] = val--;
         for(int j = 1; j < n - 1; j++)
             mat[0][j] = val--;
+    }
+    private static void VC(){
+        int n = sc.nextInt();
+        int[] digits = new int[10];
+        while(n > 0){
+            digits[n % 10]++;
+            if(digits[n % 10] > 1) {
+                System.out.println("YES");
+                return;
+            }
+            n /= 10;
+        }
+        System.out.println("NO");
+
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        n = 0;
+        while(a != 0 && b != 0){
+            while(a > b) {
+                a -= b;
+                n++;
+            }
+            while(b >= a) {
+                b -= a;
+                n++;
+            }
+        }
+        System.out.println(a + " " + n);
+
+        a = sc.nextInt();
+        b = sc.nextInt();
+        n = 0;
+
+        for(int i = a; i <= b; i++){
+            if(checkSimple(i)) {
+                System.out.print(i + " ");
+                n++;
+            }
+        }
+        if(n == 0) System.out.println(n);
+
+        int c = sc.nextInt();
+        a = sc.nextInt();
+        b = sc.nextInt();
+        n = sc.nextInt();
+        int a1 = 0, b1 = 0, c1 = 0;
+        int k = 0;
+        StringBuffer str = new StringBuffer();
+        while(a*a1 <= n)
+        {
+            if(a*a1 + b*b1 + c*c1 == n) {
+                str.append(a1 + " " + b1 + " " + c1 + "\n");
+                k++;
+            }
+            b1 = 0;
+            while(a*a1 + b*b1 <= n){
+                if(a*a1 + b*b1 + c*c1 == n) {
+                    str.append(a1 + " " + b1 + " " + c1 + "\n");
+                    k++;
+                }
+                c1 = 0;
+                while(a*a1 + b*b1 + c*c1 <= n){
+                    if(a*a1 + b*b1 + c*c1 == n) {
+                        str.append(a1 + " " + b1 + " " + c1 + "\n");
+                        k++;
+                    }
+                    c1++;
+                }
+                b1++;
+            }
+            a1++;
+        }
+        System.out.println(k + "\n" + str);
+
+        int x = sc.nextInt();
+        int max = x;
+        k = 1;
+        while(x != 0){
+            x = sc.nextInt();
+            if(x == max) k++;
+            if(x > max) {
+                max = x;
+                k = 1;
+            }
+        }
+        System.out.println(k);
+
+        x = sc.nextInt();
+        k = 1;
+        max = k;
+        boolean rises = true;
+        while(x != 0){
+            int xx = sc.nextInt();
+            if(xx == 0) break;
+            if(rises){
+                if(xx > x){
+                    k++;
+                    if(k > max) max = k;
+                }
+                else if(xx < x){
+                    k = 2;
+                    rises = false;
+                }
+                else k = 1;
+            }
+            else{
+                if(xx < x){
+                    k++;
+                    if(k > max) max = k;
+                }
+                else if(xx > x){
+                    k = 2;
+                    rises = true;
+                }
+                else k = 1;
+            }
+            x = xx;
+        }
+        System.out.println(max);
+    }
+    public static boolean checkSimple(int i){
+        if (i<=1)
+            return false;
+        else if (i <=3)
+            return true;
+        else if (i%2==0 || i %3 ==0)
+            return false;
+        int n = 5;
+        while (n*n <=i){
+            if (i % n ==0 || i % (n+2) == 0)
+                return false;
+            n=n+6;
+        }
+        return true;
     }
 
 }
