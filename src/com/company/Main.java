@@ -4,17 +4,49 @@ import java.util.*;
 
 public class Main {
     public static Scanner sc = new Scanner(System.in);
-
     public static void main(String[] args) {
-        //Task1_1();
-        //Task1_2();
-        //Task1_4();
-        //Task1_5();
-        //Task1_6();
-        //Task1_7();
-        //Task1_8();
-        //Task1_11();
+        Task1_1();
+        Task1_2();
+        Task1_4();
+        Task1_5();
+        Task1_6();
+        Task1_7();
+        Task1_8();
+        Task1_11();
+        Fraction aF = new Fraction(2,7);
+        Fraction bF = new Fraction(6,-7);
+        System.out.println(aF.sumFractionTo(bF));
+        System.out.println(aF.sumFraction(aF, bF));
+
+        System.out.println(aF.subFractionTo(bF));
+        System.out.println(aF.subFraction(aF, bF));
+
+        System.out.println(aF.multiFractionTo(bF));
+        System.out.println(aF.multiFraction(aF, bF));
+
+        System.out.println(aF.divFractionTo(bF));
+        System.out.println(aF.divFraction(aF, bF));
+        MyClass obj1 = new MyClass(), obj2 = new MyClass();
+        obj1.f();
+        obj2.f();
+        obj1.f();
+
+        int n;
+        n = sc.nextInt();
+        Fraction[] a = new Fraction[n];
+        for(int i = 0; i < n; i++) {
+            a[i] = new Fraction(1, i+1);
+        }
+        for (Fraction f: a){
+            System.out.print(f);
+            System.out.print("; ");
+        }
+        B a1 = new B();
+        int b = a1.f(5.0);
+        int c = a1.f(7.0);
+        Test.s();
     }
+    //Module1 ↓
     private static int recursion(double n) {
         if (n == 1) {
             return 1;
@@ -57,7 +89,6 @@ public class Main {
 
         System.out.println("Сумма трехзначного числа равна: " + res);
 
-        res = 0;
 
         res = ((n+1)%2 == 0) ? n+1 : n+2;
         System.out.println("Ближайшее четное число большее, чем N:" + res);
@@ -92,16 +123,6 @@ public class Main {
         n %= 60;
 
         s = n;
-
-        if (s >= 60){
-            m += s/60;
-            s %= 60;
-        }
-
-        if (m >= 60){
-            h += m/60;
-            m %= 60;
-        }
 
         if (h >= 24){
             System.out.print(h%24 + ":");
@@ -171,39 +192,19 @@ public class Main {
         double x, y;
         x = sc.nextDouble();
 
-        if(x>=3 && x<=8){
-            System.out.println(true);
-        }
-        else{
-            System.out.println(false);
-        }
+        System.out.println(x >= 3 && x <= 8);
 
         x = sc.nextDouble();
 
-        if((x>=-3 && x<=5)||(x>=9 && x<=15)){
-            System.out.println(true);
-        }
-        else{
-            System.out.println(false);
-        }
+        System.out.println((x >= -3 && x <= 5) || (x >= 9 && x <= 15));
 
         x = sc.nextDouble();
 
-        if((x>=-2 && x<=3)||(x>=6 && x<=9)){
-            System.out.println(false);
-        }
-        else{
-            System.out.println(true);
-        }
+        System.out.println((!(x >= -2) || !(x <= 3)) && (!(x >= 6) || !(x <= 9)));
 
         a = sc.nextInt();
 
-        if(a>99 && a%5==0 && a<1000){
-            System.out.println(true);
-        }
-        else{
-            System.out.println(false);
-        }
+        System.out.println(a > 99 && a % 5 == 0 && a < 1000);
 
         a = sc.nextInt();
         b = sc.nextInt();
@@ -216,32 +217,17 @@ public class Main {
         else if(b==-c || b==-d){
             System.out.println(true);
         }
-        else if(c==-d){
-            System.out.println(true);
-        }
-        else{
-            System.out.println(false);
-        }
+        else System.out.println(c == -d);
 
         a = sc.nextInt();
         b = sc.nextInt();
         c = sc.nextInt();
 
         if(a%2==0){
-            if(b%2==0 || c%2==0){
-                System.out.println(true);
-            }
-            else{
-                System.out.println(false);
-            }
+            System.out.println(b % 2 == 0 || c % 2 == 0);
         }
         else{
-            if(b%2==0 && c%2==0){
-                System.out.println(true);
-            }
-            else{
-                System.out.println(false);
-            }
+            System.out.println(b % 2 == 0 && c % 2 == 0);
         }
 
         x = sc.nextDouble();
@@ -287,7 +273,8 @@ public class Main {
         x = sc.nextDouble();
         y = sc.nextDouble();
 
-        System.out.println (x>0 ? y>0 ? x<1 && y<1 ? "YES" : "NO": x*x+y*y<1 ? "YES" : "NO" : x*x+y*y<1 ? "YES" : "NO");
+        String s = x * x + y * y < 1 ? "YES" : "NO";
+        System.out.println (x>0 ? y>0 ? x<1 && y<1 ? "YES" : "NO": s : s);
     }
     private static void Task1_6(){
         //Задание 1.6
@@ -310,12 +297,12 @@ public class Main {
         b = sc.nextInt();
         c = sc.nextInt();
 
-        if ((a<=b) && (b<=c)) System.out.println(a+" "+b+" "+c);
-        else if ((b<=a) && (a<=c)) System.out.println(b+" "+a+" "+c);
-        else if ((a<=c) && (c<=b)) System.out.println(a+" "+c+" "+b);
-        else if ((c<=a) && (a<=b)) System.out.println(c+" "+a+" "+b);
-        else if ((c<=b) && (b<=a)) System.out.println(c+" "+b+" "+a);
-        else if ((b<=c) && (c<=a)) System.out.println(b+" "+c+" "+a);
+        if ((a<b) && (b<c)) System.out.println(a+" "+b+" "+c);
+        else if ((a<c) && (c<b)) System.out.println(a+" "+c+" "+b);
+        else if ((b<a) && (a<c)) System.out.println(b+" "+a+" "+c);
+        else if ((b<c) && (c<a)) System.out.println(b+" "+c+" "+a);
+        else if ((c<a) && (a<b)) System.out.println(c+" "+a+" "+b);
+        else if ((c<b) && (b<a)) System.out.println(c+" "+b+" "+a);
 
         ad = sc.nextDouble();
         bd = sc.nextDouble();
@@ -329,46 +316,20 @@ public class Main {
 
         n = sc.nextInt();
 
-        switch(n){
-            case 1:
-                System.out.println(days[1]);
-                break;
-            case 2:
-                System.out.println(days[2]);
-                break;
-            case 3:
-                System.out.println(days[3]);
-                break;
-            case 4:
-                System.out.println(days[4]);
-                break;
-            case 5:
-                System.out.println(days[5]);
-                break;
-            case 6:
-                System.out.println(days[6]);
-                break;
-            case 7:
-                System.out.println(days[7]);
-                break;
-            case 8:
-                System.out.println(days[8]);
-                break;
-            case 9:
-                System.out.println(days[9]);
-                break;
-            case 10:
-                System.out.println(days[10]);
-                break;
-            case 11:
-                System.out.println(days[11]);
-                break;
-            case 12:
-                System.out.println(days[12]);
-                break;
-            default:
-                System.out.println(days[0]);
-                break;
+        switch (n) {
+            case 1 -> System.out.println(days[1]);
+            case 2 -> System.out.println(days[2]);
+            case 3 -> System.out.println(days[3]);
+            case 4 -> System.out.println(days[4]);
+            case 5 -> System.out.println(days[5]);
+            case 6 -> System.out.println(days[6]);
+            case 7 -> System.out.println(days[7]);
+            case 8 -> System.out.println(days[8]);
+            case 9 -> System.out.println(days[9]);
+            case 10 -> System.out.println(days[10]);
+            case 11 -> System.out.println(days[11]);
+            case 12 -> System.out.println(days[12]);
+            default -> System.out.println(days[0]);
         }
 
         n = sc.nextInt();
@@ -417,11 +378,11 @@ public class Main {
         c = sc.nextInt();
 
         if ((a<=b) && (b<=c)) System.out.println(a+" "+b+" "+c);
-        else if ((b<=a) && (a<=c)) System.out.println(b+" "+a+" "+c);
         else if ((a<=c) && (c<=b)) System.out.println(a+" "+c+" "+b);
-        else if ((c<=a) && (a<=b)) System.out.println(c+" "+a+" "+b);
-        else if ((c<=b) && (b<=a)) System.out.println(c+" "+b+" "+a);
-        else if ((b<=c) && (c<=a)) System.out.println(b+" "+c+" "+a);
+        else if ((b<=a) && (a<=c)) System.out.println(b+" "+a+" "+c);
+        else if (b<=c) System.out.println(b+" "+c+" "+a);
+        else if (a<=b) System.out.println(c+" "+a+" "+b);
+        else System.out.println(c+" "+b+" "+a);
 
         a = sc.nextInt();
         b = sc.nextInt();
@@ -431,18 +392,16 @@ public class Main {
             System.out.println("impossible");
         }
         else{
-            if(a > b) max = a;
-            else max = b;
+            max = Math.max(a, b);
             if(c > max) max=c;
-            if(a < b) min = a;
-            else min = b;
+            min = Math.min(a, b);
             if(c < min) min = c;
             mid = a+b+c-max-min;
             d = min*min+mid*mid;
             e = max*max;
             if(d > e) System.out.println("acute");
             else if(d < e) System.out.println("obtuse");
-            else if(d == e) System.out.println("right");
+            else System.out.println("right");
 
         }
     }
@@ -467,9 +426,8 @@ public class Main {
         }
         System.out.println(sum);
 
-        n = 10;
         sum = 0;
-        while (n>=10 && n<100){
+        while (true){
             n = sc.nextInt();
             if(n<10 || n>=100) break;
             sum += n/10;
@@ -606,8 +564,8 @@ public class Main {
         a = sc.nextInt();
         b = sc.nextInt();
         int c = sc.nextInt(), d = sc.nextInt();
-        int minch = ((a >= c) ? c : a), minzn = ((a >= c) ? d : b);
-        int maxch = ((a >= c) ? a : c), maxzn = ((a >= c) ? b : d);
+        int minch = (Math.min(a, c)), minzn = ((a >= c) ? d : b);
+        int maxch = (Math.max(a, c)), maxzn = ((a >= c) ? b : d);
         int ost = 10000 % minch;
         x = 10000 + ((ost == 0) ? minzn : (minch - ost + minzn));
         k = 0;
@@ -755,7 +713,7 @@ public class Main {
             System.out.print(arr[i]+" ");
         }
 
-        int j = sc.nextInt(), count = 0, maxcount = 1, min=0;
+        int j = sc.nextInt(), count, maxcount = 1, min;
         n = -1;
         int[] a = new int[j];
         if (j != 1) {
@@ -895,7 +853,7 @@ public class Main {
         }
         System.out.println(sum);
 
-        int max = 0;
+        int max;
         n = sc.nextInt();
         arr = new int[n];
         arr[0] = sc.nextInt();
@@ -916,9 +874,10 @@ public class Main {
         }
         System.out.println(sum);
     }
-    public static int SumOfDigits(int n){
+    //Task1_9 ↓
+    public static int SumOfDigits(){
         Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
+        int n = sc.nextInt();
         int sum = 0;
         for (int i = n; i != 0; i = i / 10){
             sum = sum + i % 10;
@@ -947,9 +906,7 @@ public class Main {
     }
     public static int SumOfThirteen(int x){
         int num = 0;
-        while(x > 0){
-            if(SumOfDigits(--x) % 13 == 0) num++;
-        }
+        while(x > 0) if (SumOfDigits() % 13 == 0) num++;
         return num;
     }
     public static int SumOfDigits3(int x){
@@ -964,20 +921,20 @@ public class Main {
         StringBuffer str = new StringBuffer();
         for(int i = 0; i < n; i++){
             x *= 2;
-            str.append((int)(x/1));
+            str.append((int)(x));
             x %= 1;
         }
         System.out.println(str);
     }
     public static double avgOf4Digit(int[] arr){
         double sum = 0; int k = 0;
-        for(int i = 0; i < arr.length; i++){
-            if(arr[i] >= 1000 && arr[i] < 10000) {
-                sum += arr[i];
+        for (int j : arr) {
+            if (j >= 1000 && j < 10000) {
+                sum += j;
                 k++;
             }
         }
-        if(k == 0) return (double)(-1);
+        if(k == 0) return -1;
         return sum / k;
     }
     public static int[] minToBegin(int[] arr){
@@ -993,7 +950,7 @@ public class Main {
         return arr;
     }
     public static double segmentLength(int x1, int y1, int x2, int y2){
-        return (double)(Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2)));
+        return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
     }
     public static double trianglePerimetr(int x1, int y1, int x2, int y2, int x3, int y3){
         return segmentLength(x1, y1, x2, y2) + segmentLength(x2, y2, x3, y3) + segmentLength(x3, y3, x1, y1);
@@ -1001,6 +958,7 @@ public class Main {
     public static int min(int x1, int x2, int x3, int x4){
         return (x1 <= x2 && x1 <= x3 && x1 <= x4) ? x1 : (x2 <= x1 && x2 <= x3 && x2 <= x4) ? x2 : (x3 <= x1 && x3 <= x2 && x3 <= x4) ? x3 : x4;
     }
+    //Task1_9 ↑
     private static void Task1_11(){
         int n = sc.nextInt(); int m = sc.nextInt();
         int[][] mat = new int[n][m];
@@ -1031,9 +989,9 @@ public class Main {
                 }
             }
         }
-        for(int i = 0; i < mas.length; i++) {
-            for(int j = 0; j < mas[i].length; j++) {
-                System.out.print(mas[i][j] + " ");
+        for (int[] ma : mas) {
+            for (int i : ma) {
+                System.out.print(i + " ");
             }
             System.out.println();
         }
@@ -1067,7 +1025,7 @@ public class Main {
         }
         for(i = 0; i < n ; i++){
             for(j = 0; j < m; j++)
-                System.out.print(String.format("%3d", mat[i][j]));
+                System.out.printf("%3d", mat[i][j]);
             System.out.println();
         }
 
@@ -1087,15 +1045,15 @@ public class Main {
             while(mat[i][j + 1] == 0)
                 mat[i][++j] = val--;
         }
-        for(int x = 0; x < mat.length ; x++){
-            for(int y = 0; y < mat.length; y++)
-                System.out.print(String.format("%3d", mat[x][y]));
+        for (int[] ints : mat) {
+            for (int y = 0; y < mat.length; y++)
+                System.out.printf("%3d", ints[y]);
             System.out.println();
         }
 
         //3 задание
         n = sc.nextInt();
-        int a[][] = new int[n][n];
+        int[][] a = new int[n][n];
         for(i = 0; i < n; ++i) {
             for(j = 0; j < n; ++j) {
                 a[i][j] = sc.nextInt();
@@ -1110,7 +1068,6 @@ public class Main {
             }
         }
         System.out.println("yes");
-        return;
     }
     public static void perimeter(int[][] mat){
         int n = mat.length;
@@ -1170,23 +1127,23 @@ public class Main {
         n = sc.nextInt();
         int a1 = 0, b1 = 0, c1 = 0;
         int k = 0;
-        StringBuffer str = new StringBuffer();
+        StringBuilder str = new StringBuilder();
         while(a*a1 <= n)
         {
             if(a*a1 + b*b1 + c*c1 == n) {
-                str.append(a1 + " " + b1 + " " + c1 + "\n");
+                str.append(a1).append(" ").append(b1).append(" ").append(c1).append("\n");
                 k++;
             }
             b1 = 0;
             while(a*a1 + b*b1 <= n){
                 if(a*a1 + b*b1 + c*c1 == n) {
-                    str.append(a1 + " " + b1 + " " + c1 + "\n");
+                    str.append(a1).append(" ").append(b1).append(" ").append(c1).append("\n");
                     k++;
                 }
                 c1 = 0;
                 while(a*a1 + b*b1 + c*c1 <= n){
                     if(a*a1 + b*b1 + c*c1 == n) {
-                        str.append(a1 + " " + b1 + " " + c1 + "\n");
+                        str.append(a1).append(" ").append(b1).append(" ").append(c1).append("\n");
                         k++;
                     }
                     c1++;
@@ -1257,6 +1214,175 @@ public class Main {
             n=n+6;
         }
         return true;
+    }
+    //Module1 ↑
+    //Module2 ↓
+
+    //Module2 ↑
+}
+
+class Vector2D{
+    public double vX;
+    public double vY;
+    public static int count;
+    public Vector2D(){
+        this.vX = 1;
+        this.vY = 1;
+        count += 1;
+    }
+    public Vector2D(double prX, double prY) {
+        this.vX = prX;
+        this.vY = prY;
+        count += 1;
+    }
+    public Vector2D(Vector2D v) {
+        this.vX = v.vX;
+        this.vY = v.vY;
+        count += 1;
+    }
+    public void print() {
+        System.out.printf(Locale.US, "(%.2f, %.2f)%n", this.vX, this.vY);
+    }
+    public double length() {
+        return Math.sqrt(Math.pow(this.vX, 2) + Math.pow(this.vY, 2));
+    }
+    public void add(Vector2D v) {
+        this.vX += v.vX;
+        this.vY += v.vY;
+    }
+    public void sub(Vector2D v) {
+        this.vX -= v.vX;
+        this.vY -= v.vY;
+    }
+    public void scale(double scaleFactor) {
+        this.vX *= scaleFactor;
+        this.vY *= scaleFactor;
+    }
+    public void normalized() {
+        double len = length();
+        this.vX /= len;
+        this.vY /= len;
+    }
+    public double dotProduct(Vector2D v) {
+        return this.vX * v.vX + this.vY * v.vY;
+    }
+}
+
+class Fraction{
+    private int numerator;
+    private int denominator = 1;
+
+    public Fraction(int numerator, int denominator){
+        if(denominator == 0){
+            System.out.println("Denominator can't be zero. Choose another one.");
+            return;
+        }
+        this.numerator = numerator * (denominator < 0 ? -1 : 1);
+        this.denominator = Math.abs(denominator);
+        normalization();
+    }
+
+
+    public int getNumerator(){
+        return numerator;
+    }
+
+    public int getDenominator(){
+        return denominator;
+    }
+
+    public void setNumerator(int numerator){
+        this.numerator = numerator;
+    }
+
+    public void setDenominator(int denominator){
+        if (denominator == 0) {
+            System.out.println("Denominator can't be zero. Choose another one.");
+            return;
+        }
+        if (denominator < 0){
+            this.numerator *= -1;
+        }
+    }
+
+    private int gcd(int numerator, int denominator){
+        while (numerator != 0 && denominator != 0) {
+            if (numerator > denominator) {
+                numerator %= denominator;
+            } else {
+                denominator %= numerator;
+            }
+        }
+        return numerator + denominator;
+    }
+
+    private int gcd2(int a, int b){
+        if (b == 0) return a;
+        else return gcd2(b, a%b);
+    }
+
+    private void normalization(){
+        int n = gcd(Math.abs(numerator), Math.abs(denominator));
+        numerator /= n;
+        denominator /= n;
+    }
+
+    public boolean properFraction(){ //проверка правильности дроби
+        return (Math.abs(numerator) < denominator);
+    }
+
+    public int getIntegerPart(){ // выделение целой части
+        return (numerator / denominator);
+    }
+
+    public Fraction fractionalPart(){ // выделение дробной части
+        return new Fraction(numerator % denominator, denominator);
+    }
+
+    public double toDecimalFractions(){ // результат деления в виде десятичной дроби
+        return (double) numerator / denominator;
+    }
+
+    public String toString(){ // вывод дроби на печать
+        return numerator + "/" + denominator;
+    }
+    //Сложение
+    public Fraction sumFractionTo(Fraction obj){
+        return new Fraction(this.numerator * obj.denominator + obj.numerator * this.denominator, this.denominator * obj.denominator);
+    }
+    public Fraction sumFraction(Fraction obj1, Fraction obj2){
+        return new Fraction(obj1.numerator * obj2.denominator + obj2.numerator * obj1.denominator, obj1.denominator * obj2.denominator);
+    }
+    //Вычитание
+    public Fraction subFractionTo(Fraction obj){
+        return new Fraction(this.numerator * obj.denominator - obj.numerator * this.denominator, this.denominator * obj.denominator);
+    }
+    public Fraction subFraction(Fraction obj1, Fraction obj2){
+        return new Fraction(obj1.numerator * obj2.denominator - obj2.numerator * obj1.denominator, obj1.denominator * obj2.denominator);
+    }
+    //Умножение
+    public Fraction multiFractionTo(Fraction obj){
+        return new Fraction(this.numerator * obj.numerator, this.denominator * obj.denominator);
+    }
+    public Fraction multiFraction(Fraction obj1, Fraction obj2){
+        return new Fraction(obj1.numerator * obj2.numerator, obj1.denominator * obj2.denominator);
+    }
+    //Деление
+    public Fraction divFractionTo(Fraction obj){
+        return new Fraction(this.numerator * obj.denominator, this.denominator * obj.numerator);
+    }
+    public Fraction divFraction(Fraction obj1, Fraction obj2){
+        return obj1.divFractionTo(obj2);
+    }
+}
+
+class MyClass extends Point{
+    public static int count;
+
+    void f(){
+        count += 1;
+        System.out.print(count + " ");
+
     }
 
 }
